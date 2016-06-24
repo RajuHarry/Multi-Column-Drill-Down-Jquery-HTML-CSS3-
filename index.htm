@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+$(function () {    
+
+    // Create the chart
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Basic drilldown'
+        },
+        xAxis: {
+            type: 'category'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                }
+            }
+        },
+
+        series: [{
+            name: 'Subjects',
+            colorByPoint: true,
+            data: [{
+                name: 'Art',
+                y: 5.2,
+                drilldown: 'arts'
+            },
+			{
+                name: 'Biology',
+                y: 6.3,
+                drilldown: 'biology'
+            },
+			{
+                name: 'Business Studies',
+                y: 5.5,
+                drilldown: 'businessstudies'
+            },
+			{
+                name: 'Chemistry',
+                y: 6.6,
+                drilldown: 'chemistry'
+            },
+			{
+                name: 'Chienese',
+                y: 5,
+                drilldown: 'chienese'
+            },
+			{
+                name: 'Design & Technology',
+                y: 7.2,
+                drilldown: 'technology'
+            },
+			{
+                name: 'History',
+                y: 7.1,
+                drilldown: 'history'
+            }
+			]
+        }],
+        drilldown: {
+            series: [{
+                id: 'history',
+                name: 'History',
+                data: [
+                    {name: 'Teaching Group 1', y: 8.2,drilldown: 'students'},
+                    {name: 'Teaching Group 2', y: 6.2},
+                    {name: 'Teaching Group 3', y: 7.5},
+
+                ]
+            },{
+                id:'students',
+				name: 'Students',
+                data: [{name: 'Saraha', y: 8.2,drilldown: 'sarahanext'},
+                    ['Girish', 10],
+                    ['Amrita', 6]] 
+            },
+			{
+                id:'sarahanext',
+				name: 'Semesters',
+                data: [{name: 'Saraha History', y: 4,drilldown: 'historyynxt'},
+                    ['Saraha Geography', 10],
+                    ['Saraha English Lit', 3]]
+            },
+			{
+                
+                id:'historyynxt',
+				name: 'Semister',
+                data: [{name: 'Sem 1', y: 3},{name: 'Sem 2', y: 5},{name: 'Sem 3', y: 4},{name: 'Sem 4', y: 3}]
+            }
+			]
+        }
+    })
+});
+		</script>
+	</head>
+	<body>
+<script src="js/highcharts.js"></script>
+<script src="js/modules/data.js"></script>
+<script src="js/modules/drilldown.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	</body>
+</html>
